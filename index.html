@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EM TECH | Plataforma Electromecánica</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+    --bg:#090d12;
+    --panel:#101720;
+    --panel2:#151e29;
+    --border:#263241;
+    --text:#f3f6f9;
+    --muted:#8c9bab;
+    --blue:#20a4f3;
+    --yellow:#ffc928;
+    --green:#28d17c;
+    --red:#ff5252;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+}
+
+.app{
+    display:flex;
+    min-height:100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    width:255px;
+    background:#0c1118;
+    border-right:1px solid var(--border);
+    position:fixed;
+    height:100vh;
+    left:0;
+    top:0;
+    padding:25px 15px;
+}
+
+.logo{
+    padding:0 12px 30px;
+}
+
+.logo-title{
+    font-size:26px;
+    font-weight:900;
+    letter-spacing:1px;
+}
+
+.logo-title span{
+    color:var(--yellow);
+}
+
+.logo small{
+    display:block;
+    color:var(--muted);
+    margin-top:6px;
+}
+
+.menu-title{
+    color:#657384;
+    font-size:11px;
+    padding:12px;
+    letter-spacing:1.5px;
+}
+
+.menu button{
+    width:100%;
+    border:0;
+    background:transparent;
+    color:#aeb9c5;
+    text-align:left;
+    padding:13px;
+    border-radius:9px;
+    cursor:pointer;
+    margin-bottom:4px;
+    font-size:14px;
+}
+
+.menu button:hover{
+    background:var(--panel2);
+    color:white;
+}
+
+.menu button.active{
+    background:#172432;
+    color:white;
+    border-left:3px solid var(--yellow);
+}
+
+.icon{
+    display:inline-block;
+    width:28px;
+}
+
+/* MAIN */
+
+.main{
+    margin-left:255px;
+    width:calc(100% - 255px);
+}
+
+.topbar{
+    height:72px;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 35px;
+    background:#0c1118;
+}
+
+.topbar h2{
+    font-size:17px;
+}
+
+.status{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:13px;
+    color:var(--muted);
+}
+
+.status-dot{
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:var(--green);
+}
+
+.content{
+    padding:35px;
+    max-width:1500px;
+    margin:auto;
+}
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+.hero{
+    background:
+        linear-gradient(110deg,#111b26,#101720);
+    border:1px solid var(--border);
+    padding:32px;
+    border-radius:16px;
+    margin-bottom:28px;
+}
+
+.hero-tag{
+    color:var(--yellow);
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:1.5px;
+}
+
+.hero h1{
+    font-size:35px;
+    margin:10px 0;
+}
+
+.hero p{
+    color:var(--muted);
+    max-width:700px;
+    line-height:1.6;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.card{
+    background:var(--panel);
+    border:1px solid var(--border);
+    padding:22px;
+    border-radius:14px;
+    transition:.2s;
+}
+
+.card:hover{
+    border-color:#405167;
+    transform:translateY(-2px);
+}
+
+.card-icon{
+    width:46px;
+    height:46px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:10px;
+    background:#182431;
+    font-size:23px;
+    margin-bottom:18px;
+}
+
+.card h3{
+    margin-bottom:8px;
+}
+
+.card p{
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.5;
+}
+
+.card button,
+.primary-btn{
+    margin-top:18px;
+    border:0;
+    background:var(--yellow);
+    color:#151515;
+    font-weight:bold;
+    padding:10px 16px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.card button:hover,
+.primary-btn:hover{
+    opacity:.9;
+}
+
+.section-title{
+    margin-bottom:20px;
+}
+
+.section-title h1{
+    font-size:28px;
+}
+
+.section-title p{
+    color:var(--muted);
+    margin-top:6px;
+}
+
+/* EQUIPOS */
+
+.equipment-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.equipment{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:20px;
+    cursor:pointer;
+}
+
+.equipment:hover{
+    border-color:var(--yellow);
+}
+
+.equipment .emoji{
+    font-size:30px;
+    margin-bottom:13px;
+}
+
+.equipment h3{
+    font-size:15px;
+}
+
+.equipment p{
+    color:var(--muted);
+    font-size:12px;
+    margin-top:7px;
+}
+
+/* DIAGNOSTICO */
+
+.diagnostic{
+    max-width:850px;
+}
+
+.diagnostic-box{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:25px;
+}
+
+label{
+    display:block;
+    color:#c3ccd5;
+    margin-bottom:8px;
+    font-size:13px;
+}
+
+select,
+textarea,
+input{
+    width:100%;
+    background:#0b1118;
+    border:1px solid var(--border);
+    color:white;
+    padding:13px;
+    border-radius:8px;
+    margin-bottom:18px;
+    outline:none;
+}
+
+textarea{
+    height:120px;
+    resize:vertical;
+}
+
+select:focus,
+textarea:focus,
+input:focus{
+    border-color:var(--blue);
+}
+
+.result{
+    display:none;
+    margin-top:20px;
+    padding:20px;
+    border-radius:10px;
+    background:#0b141d;
+    border-left:4px solid var(--yellow);
+}
+
+.result h3{
+    color:var(--yellow);
+    margin-bottom:12px;
+}
+
+.result ol{
+    margin-left:20px;
+    color:#c6d0da;
+}
+
+.result li{
+    margin:10px 0;
+    line-height:1.5;
+}
+
+/* MAINTENANCE */
+
+.form-box{
+    max-width:850px;
+    background:var(--panel);
+    border:1px solid var(--border);
+    padding:25px;
+    border-radius:14px;
+}
+
+.records{
+    margin-top:25px;
+}
+
+.record{
+    background:var(--panel);
+    border:1px solid var(--border);
+    padding:17px;
+    border-radius:10px;
+    margin-bottom:10px;
+}
+
+.record-date{
+    color:var(--yellow);
+    font-size:12px;
+}
+
+.record h4{
+    margin:7px 0;
+}
+
+.record p{
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* COURSES */
+
+.course-progress{
+    margin-top:15px;
+    height:6px;
+    background:#27313d;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress{
+    height:100%;
+    background:var(--yellow);
+}
+
+/* TOOL */
+
+.tool-box{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:25px;
+    max-width:650px;
+}
+
+.calc-result{
+    font-size:26px;
+    color:var(--yellow);
+    font-weight:bold;
+    margin-top:10px;
+}
+
+/* MOBILE */
+
+.mobile-menu{
+    display:none;
+}
+
+@media(max-width:950px){
+
+    .sidebar{
+        transform:translateX(-100%);
+        z-index:10;
+        transition:.25s;
+    }
+
+    .sidebar.open{
+        transform:translateX(0);
+    }
+
+    .main{
+        margin-left:0;
+        width:100%;
+    }
+
+    .mobile-menu{
+        display:block;
+        border:0;
+        background:transparent;
+        color:white;
+        font-size:25px;
+        cursor:pointer;
+    }
+
+    .grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .equipment-grid{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:600px){
+
+    .content{
+        padding:20px;
+    }
+
+    .topbar{
+        padding:0 20px;
+    }
+
+    .grid,
+    .equipment-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:27px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="logo">
+        <div class="logo-title">EM <span>TECH</span></div>
+        <small>Plataforma Electromecánica</small>
+    </div>
+
+    <div class="menu">
+
+        <div class="menu-title">PRINCIPAL</div>
+
+        <button class="active" onclick="showPage('dashboard',this)">
+            <span class="icon">▦</span> Dashboard
+        </button>
+
+        <button onclick="showPage('diagnostico',this)">
+            <span class="icon">⚡</span> Diagnóstico
+        </button>
+
+        <button onclick="showPage('equipos',this)">
+            <span class="icon">⚙</span> Equipos
+        </button>
+
+        <button onclick="showPage('mantenimiento',this)">
+            <span class="icon">🔧</span> Mantenimiento
+        </button>
+
+        <div class="menu-title">CONOCIMIENTO</div>
+
+        <button onclick="showPage('aprender',this)">
+            <span class="icon">🎓</span> Aprender
+        </button>
+
+        <button onclick="showPage('biblioteca',this)">
+            <span class="icon">📚</span> Biblioteca
+        </button>
+
+        <button onclick="showPage('herramientas',this)">
+            <span class="icon">🧰</span> Herramientas
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- MAIN -->
+
+<main class="main">
+
+<header class="topbar">
+
+    <button class="mobile-menu" onclick="toggleMenu()">☰</button>
+
+    <h2>Centro Técnico Electromecánico</h2>
+
+    <div class="status">
+        <div class="status-dot"></div>
+        Sistema activo
+    </div>
+
+</header>
+
+
+<div class="content">
+
+<!-- DASHBOARD -->
+
+<section id="dashboard" class="page active">
+
+<div class="hero">
+
+<div class="hero-tag">EM TECH • INDUSTRIAL</div>
+
+<h1>Tu asistente de electromecánica</h1>
+
+<p>
+Aprende, diagnostica y registra trabajos de mantenimiento
+eléctrico, mecánico, neumático e hidráulico desde una sola
+plataforma.
+</p>
+
+</div>
+
+
+<div class="grid">
+
+<div class="card">
+<div class="card-icon">⚡</div>
+<h3>Tengo una falla</h3>
+<p>
+Inicia un diagnóstico paso a paso según los síntomas
+que presenta una máquina.
+</p>
+<button onclick="openPage('diagnostico')">
+Diagnosticar
+</button>
+</div>
+
+
+<div class="card">
+<div class="card-icon">⚙</div>
+<h3>Equipos industriales</h3>
+<p>
+Motores, PLC, variadores, sensores, compresores,
+chillers y mucho más.
+</p>
+<button onclick="openPage('equipos')">
+Ver equipos
+</button>
+</div>
+
+
+<div class="card">
+<div class="card-icon">🔧</div>
+<h3>Mantenimiento</h3>
+<p>
+Registra mantenimientos preventivos, correctivos,
+fallas y soluciones.
+</p>
+<button onclick="openPage('mantenimiento')">
+Registrar
+</button>
+</div>
+
+
+<div class="card">
+<div class="card-icon">🎓</div>
+<h3>Centro de aprendizaje</h3>
+<p>
+Cursos prácticos para desarrollar tus conocimientos
+como técnico electromecánico.
+</p>
+<button onclick="openPage('aprender')">
+Aprender
+</button>
+</div>
+
+
+<div class="card">
+<div class="card-icon">📖</div>
+<h3>Biblioteca técnica</h3>
+<p>
+Conceptos eléctricos, mecánicos, hidráulicos,
+neumáticos y automatización.
+</p>
+<button onclick="openPage('biblioteca')">
+Abrir biblioteca
+</button>
+</div>
+
+
+<div class="card">
+<div class="card-icon">🧰</div>
+<h3>Herramientas</h3>
+<p>
+Calculadoras eléctricas y herramientas útiles
+para diagnóstico.
+</p>
+<button onclick="openPage('herramientas')">
+Abrir herramientas
+</button>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- DIAGNOSTICO -->
+
+<section id="diagnostico" class="page">
+
+<div class="section-title">
+<h1>⚡ Diagnóstico de fallas</h1>
+<p>Describe el problema y sigue una ruta básica de diagnóstico.</p>
+</div>
+
+<div class="diagnostic">
+
+<div class="diagnostic-box">
+
+<label>Tipo de equipo</label>
+
+<select id="diagEquipo">
+<option>Motor eléctrico</option>
+<option>Variador de frecuencia</option>
+<option>Contactor</option>
+<option>Sensor</option>
+<option>PLC</option>
+<option>Compresor</option>
+<option>Chiller</option>
+<option>Sistema hidráulico</option>
+<option>Sistema neumático</option>
+</select>
+
+<label>¿Qué está pasando?</label>
+
+<textarea id="problema"
+placeholder="Ejemplo: El motor intenta arrancar pero dispara la protección..."></textarea>
+
+<button class="primary-btn" onclick="diagnosticar()">
+Iniciar diagnóstico
+</button>
+
+
+<div class="result" id="resultado">
+
+<h3>Ruta inicial de diagnóstico</h3>
+
+<ol id="diagnosticSteps"></ol>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- EQUIPOS -->
+
+<section id="equipos" class="page">
+
+<div class="section-title">
+<h1>⚙ Equipos industriales</h1>
+<p>Selecciona un sistema para comenzar a estudiarlo.</p>
+</div>
+
+<div class="equipment-grid">
+
+<div class="equipment">
+<div class="emoji">⚡</div>
+<h3>Motores eléctricos</h3>
+<p>Monofásicos y trifásicos</p>
+</div>
+
+<div class="equipment">
+<div class="emoji">🔌</div>
+<h3>Contactores</h3>
+<p>Control y potencia</p>
+</div>
+
+<div class="equipment">
+<div class="emoji">🎛</div>
+<h3>Variadores</h3>
+<p>VFD y control de motores</p>
+</div>
+
+<div class="equipment">
+<div class="emoji">🧠</div>
+<h3>PLC</h3>
+<p>Automatización industrial</p>
+</div>
+
+<div class="equipment">
+<div class="emoji">📡</div>
+<h3>Sensores</h3>
+<p>Inductivos, capacitivos y fotoeléctricos</p>
+</div>
+
+<div class="equipment">
+<div class="emoji">💨</div>
+<h3>Compresores</h3>
+<p>Generación de aire comprimido</p>
+</div>
+
+<div class="equipment">
+<div class="emoji">❄</div>
+<h3>Chillers</h3>
+<p>Refrigeración industrial</p>
+</div>
+
+<div class="equipment">
+<div class="emoji">💧</div>
+<h3>Hidráulica</h3>
+<p>Bombas, válvulas y cilindros</p>
+</div>
+
+<div class="equipment">
+<div class="emoji">💨</div>
+<h3>Neumática</h3>
+<p>Válvulas y actuadores</p>
+</div>
+
+<div class="equipment">
+<div class="emoji">🔥</div>
+<h3>Resistencias</h3>
+<p>Calefacción industrial</p>
+</div>
+
+<div class="equipment">
+<div class="emoji">🌡</div>
+<h3>Termostatos</h3>
+<p>Control de temperatura</p>
+</div>
+
+<div class="equipment">
+<div class="emoji">🔋</div>
+<h3>Fuentes eléctricas</h3>
+<p>24 VDC y alimentación industrial</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- MANTENIMIENTO -->
+
+<section id="mantenimiento" class="page">
+
+<div class="section-title">
+<h1>🔧 Registro de mantenimiento</h1>
+<p>Crea tu historial personal de intervenciones.</p>
+</div>
+
+<div class="form-box">
+
+<label>Máquina / Equipo</label>
+<input id="machine" placeholder="Ej: Compresor Kaeser">
+
+<label>Tipo de mantenimiento</label>
+
+<select id="maintenanceType">
+<option>Preventivo</option>
+<option>Correctivo</option>
+<option>Inspección</option>
+<option>Diagnóstico</option>
+</select>
+
+<label>Falla / Trabajo realizado</label>
+
+<textarea id="work"
+placeholder="Describe qué ocurrió y qué trabajo realizaste..."></textarea>
+
+<label>Solución</label>
+
+<textarea id="solution"
+placeholder="Describe la solución aplicada..."></textarea>
+
+<button class="primary-btn" onclick="saveMaintenance()">
+Guardar mantenimiento
+</button>
+
+</div>
+
+<div class="records" id="records"></div>
+
+</section>
+
+
+<!-- APRENDER -->
+
+<section id="aprender" class="page">
+
+<div class="section-title">
+<h1>🎓 Centro de aprendizaje</h1>
+<p>Formación práctica para mantenimiento industrial.</p>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<div class="card-icon">⚡</div>
+<h3>Electricidad industrial</h3>
+<p>
+Voltaje, corriente, resistencia, potencia,
+protecciones y mediciones.
+</p>
+<div class="course-progress">
+<div class="progress" style="width:20%"></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-icon">⚙</div>
+<h3>Motores eléctricos</h3>
+<p>
+Funcionamiento, conexiones, mediciones y
+diagnóstico de fallas.
+</p>
+<div class="course-progress">
+<div class="progress" style="width:10%"></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-icon">🎛</div>
+<h3>Automatización</h3>
+<p>
+PLC, sensores, contactores, relés y
+variadores de frecuencia.
+</p>
+<div class="course-progress">
+<div class="progress" style="width:5%"></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-icon">💧</div>
+<h3>Hidráulica</h3>
+<p>
+Bombas, válvulas, presión,
+caudal y cilindros.
+</p>
+</div>
+
+<div class="card">
+<div class="card-icon">💨</div>
+<h3>Neumática</h3>
+<p>
+Compresores, FRL, electroválvulas
+y actuadores.
+</p>
+</div>
+
+<div class="card">
+<div class="card-icon">❄</div>
+<h3>Refrigeración industrial</h3>
+<p>
+Chillers, compresores, condensadores
+y evaporadores.
+</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- BIBLIOTECA -->
+
+<section id="biblioteca" class="page">
+
+<div class="section-title">
+<h1>📚 Biblioteca técnica</h1>
+<p>Información de consulta rápida.</p>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<h3>Ley de Ohm</h3>
+<p>V = I × R</p>
+</div>
+
+<div class="card">
+<h3>Potencia eléctrica</h3>
+<p>P = V × I</p>
+</div>
+
+<div class="card">
+<h3>Motor trifásico</h3>
+<p>
+Convierte energía eléctrica trifásica
+en movimiento mecánico.
+</p>
+</div>
+
+<div class="card">
+<h3>Contactor</h3>
+<p>
+Interruptor electromagnético utilizado
+para controlar cargas de potencia.
+</p>
+</div>
+
+<div class="card">
+<h3>PLC</h3>
+<p>
+Controlador lógico programable utilizado
+para automatizar máquinas.
+</p>
+</div>
+
+<div class="card">
+<h3>Variador de frecuencia</h3>
+<p>
+Controla velocidad y frecuencia
+de motores AC.
+</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- HERRAMIENTAS -->
+
+<section id="herramientas" class="page">
+
+<div class="section-title">
+<h1>🧰 Herramientas técnicas</h1>
+<p>Calculadoras rápidas para trabajo eléctrico.</p>
+</div>
+
+<div class="tool-box">
+
+<h3>Calculadora Ley de Ohm</h3>
+
+<br>
+
+<label>Voltaje (V)</label>
+<input type="number" id="voltage" placeholder="Ej: 220">
+
+<label>Resistencia (Ω)</label>
+<input type="number" id="resistance" placeholder="Ej: 50">
+
+<button class="primary-btn" onclick="calculateOhm()">
+Calcular corriente
+</button>
+
+<div class="calc-result" id="ohmResult">
+0 A
+</div>
+
+</div>
+
+</section>
+
+</div>
+</main>
+
+</div>
+
+
+<script>
+
+/* NAVEGACION */
+
+function showPage(page,button){
+
+    document.querySelectorAll(".page").forEach(p=>{
+        p.classList.remove("active");
+    });
+
+    document.getElementById(page).classList.add("active");
+
+    document.querySelectorAll(".menu button").forEach(b=>{
+        b.classList.remove("active");
+    });
+
+    if(button){
+        button.classList.add("active");
+    }
+
+    document.getElementById("sidebar").classList.remove("open");
+}
+
+
+function openPage(page){
+
+    document.querySelectorAll(".page").forEach(p=>{
+        p.classList.remove("active");
+    });
+
+    document.getElementById(page).classList.add("active");
+
+    document.querySelectorAll(".menu button").forEach(b=>{
+        b.classList.remove("active");
+
+        if(
+            b.getAttribute("onclick") &&
+            b.getAttribute("onclick").includes("'" + page + "'")
+        ){
+            b.classList.add("active");
+        }
+    });
+}
+
+
+function toggleMenu(){
+    document.getElementById("sidebar").classList.toggle("open");
+}
+
+
+/* DIAGNOSTICO */
+
+function diagnosticar(){
+
+    const equipo =
+        document.getElementById("diagEquipo").value;
+
+    const problema =
+        document.getElementById("problema").value.trim();
+
+    if(!problema){
+        alert("Describe primero la falla.");
+        return;
+    }
+
+    const steps = [
+        "Aplicar el procedimiento de seguridad correspondiente antes de intervenir el equipo.",
+        "Realizar una inspección visual y buscar cables flojos, fugas, daños, calentamiento o componentes deteriorados.",
+        "Confirmar la alimentación eléctrica y comparar las mediciones con los datos de placa del equipo.",
+        "Revisar protecciones, fusibles, breakers, relés térmicos y señales de control.",
+        "Determinar si la falla proviene de la parte eléctrica, mecánica o del sistema de control.",
+        "Realizar mediciones específicas antes de sustituir componentes.",
+        "Registrar las mediciones, causa encontrada y solución aplicada."
+    ];
+
+    const list =
+        document.getElementById("diagnosticSteps");
+
+    list.innerHTML="";
+
+    steps.forEach(step=>{
+        const li=document.createElement("li");
+        li.textContent=step;
+        list.appendChild(li);
+    });
+
+    document.getElementById("resultado").style.display="block";
+}
+
+
+/* MANTENIMIENTO */
+
+function saveMaintenance(){
+
+    const machine =
+        document.getElementById("machine").value.trim();
+
+    const type =
+        document.getElementById("maintenanceType").value;
+
+    const work =
+        document.getElementById("work").value.trim();
+
+    const solution =
+        document.getElementById("solution").value.trim();
+
+    if(!machine || !work){
+        alert("Ingresa el equipo y el trabajo realizado.");
+        return;
+    }
+
+    const record={
+        machine,
+        type,
+        work,
+        solution,
+        date:new Date().toLocaleDateString()
+    };
+
+    let records=
+        JSON.parse(localStorage.getItem("maintenanceRecords")) || [];
+
+    records.unshift(record);
+
+    localStorage.setItem(
+        "maintenanceRecords",
+        JSON.stringify(records)
+    );
+
+    document.getElementById("machine").value="";
+    document.getElementById("work").value="";
+    document.getElementById("solution").value="";
+
+    loadRecords();
+}
+
+
+function loadRecords(){
+
+    const container=
+        document.getElementById("records");
+
+    const records=
+        JSON.parse(localStorage.getItem("maintenanceRecords")) || [];
+
+    container.innerHTML="";
+
+    records.forEach(r=>{
+
+        const div=document.createElement("div");
+
+        div.className="record";
+
+        div.innerHTML=`
+            <div class="record-date">${r.date}</div>
+            <h4>${r.machine}</h4>
+            <p><b>${r.type}</b></p>
+            <p>${r.work}</p>
+            ${
+                r.solution
+                ? `<p><b>Solución:</b> ${r.solution}</p>`
+                : ""
+            }
+        `;
+
+        container.appendChild(div);
+    });
+}
+
+
+/* LEY DE OHM */
+
+function calculateOhm(){
+
+    const V=parseFloat(
+        document.getElementById("voltage").value
+    );
+
+    const R=parseFloat(
+        document.getElementById("resistance").value
+    );
+
+    if(isNaN(V) || isNaN(R) || R===0){
+
+        document.getElementById("ohmResult").textContent=
+            "Datos inválidos";
+
+        return;
+    }
+
+    const I=V/R;
+
+    document.getElementById("ohmResult").textContent=
+        I.toFixed(2)+" A";
+}
+
+
+loadRecords();
+
+</script>
+
+</body>
+</html>
