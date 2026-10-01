@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EM TECH | Centro de Diagnóstico y Formación Electromecánica</title>
+<style>
+*{box-sizing:border-box} :root{--bg:#071019;--panel:#0d1823;--panel2:#111f2c;--line:#223547;--text:#edf5fb;--muted:#8fa3b5;--accent:#f6c344;--blue:#32a8ff;--green:#36d184;--red:#ff6670}
+body{margin:0;font-family:Inter,Arial,sans-serif;background:radial-gradient(circle at 80% 0,#10273b 0,#071019 35%);color:var(--text)}
+button,input,select,textarea{font:inherit}.app{display:flex;min-height:100vh}.side{position:fixed;inset:0 auto 0 0;width:270px;background:#08121b;border-right:1px solid var(--line);padding:22px 14px;overflow:auto;z-index:20}
+.brand{padding:5px 12px 22px}.brand b{font-size:27px;letter-spacing:1px}.brand b span{color:var(--accent)}.brand small{display:block;color:var(--muted);margin-top:6px;line-height:1.35}
+.navlabel{font-size:10px;color:#63798b;letter-spacing:1.6px;padding:16px 12px 7px}.nav button{width:100%;border:0;background:transparent;color:#a9bac8;text-align:left;padding:12px;border-radius:9px;cursor:pointer;margin:2px 0}.nav button:hover,.nav button.on{background:#132332;color:#fff}.nav button.on{box-shadow:inset 3px 0 var(--accent)}
+.main{margin-left:270px;width:calc(100% - 270px)}.top{height:70px;position:sticky;top:0;background:#08121be8;backdrop-filter:blur(12px);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:16px;padding:0 28px;z-index:10}.search{flex:1;max-width:650px;position:relative}.search input{margin:0;width:100%;background:#0c1823;border:1px solid var(--line);color:#fff;border-radius:10px;padding:11px 14px}.online{margin-left:auto;color:var(--muted);font-size:12px}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);margin-right:6px}.hamb{display:none;background:none;border:0;color:#fff;font-size:24px}
+.content{padding:30px;max-width:1500px;margin:auto}.page{display:none}.page.on{display:block}.hero{padding:34px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(115deg,#102131,#0b1721);position:relative;overflow:hidden}.hero:after{content:"⚙";position:absolute;right:40px;top:-45px;font-size:190px;color:#ffffff08}.eyebrow{color:var(--accent);font-size:11px;letter-spacing:2px;font-weight:800}.hero h1{font-size:38px;margin:10px 0}.hero p{color:var(--muted);max-width:790px;line-height:1.65}.heroactions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.btn{border:0;background:var(--accent);color:#10151a;font-weight:800;border-radius:9px;padding:11px 15px;cursor:pointer}.btn.secondary{background:#152839;color:#dce9f3;border:1px solid #284258}.btn.danger{background:#321a20;color:#ffb5ba}.title{margin:28px 0 16px}.title h2{margin:0 0 6px}.title p{margin:0;color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}.stat,.card,.box{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}.stat strong{display:block;font-size:25px}.stat span{color:var(--muted);font-size:12px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{cursor:pointer;transition:.15s}.card:hover{transform:translateY(-2px);border-color:#3a566d}.ico{font-size:27px;margin-bottom:12px}.card h3{margin:0 0 7px}.card p{color:var(--muted);font-size:13px;line-height:1.5;margin:0}.tag{display:inline-block;margin-top:12px;padding:5px 8px;border-radius:20px;background:#142637;color:#9fc3df;font-size:11px}
+.detail{display:none;margin-top:18px}.detail.on{display:block}.detail h3{color:var(--accent)}.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}.info{background:#0a151f;border:1px solid var(--line);padding:16px;border-radius:11px}.info h4{margin:0 0 9px}.info p,.info li{color:#a9bbc9;line-height:1.55;font-size:13px}.info ul,.info ol{padding-left:19px}
+label{display:block;color:#b9c8d4;font-size:12px;margin:14px 0 6px}input,select,textarea{width:100%;border:1px solid var(--line);background:#08131d;color:#fff;border-radius:8px;padding:11px;outline:none}textarea{min-height:95px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:var(--blue)}
+.wizard{max-width:900px}.step{background:#0a151f;border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:14px}.step b{color:var(--accent)}.choice{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.choice button{background:#142536;border:1px solid #29465d;color:#fff;border-radius:8px;padding:9px 13px;cursor:pointer}.warning{border-left:4px solid var(--accent);background:#221d10;padding:14px;border-radius:8px;color:#e8dba9;font-size:13px;line-height:1.5}
+.records .record{margin-top:10px;background:#0a151f;border:1px solid var(--line);border-radius:11px;padding:15px}.record small{color:var(--accent)}.record p{color:var(--muted);font-size:13px}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tooltabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px}.tooltabs button{background:#132536;border:1px solid var(--line);color:#d8e5ee;padding:8px 11px;border-radius:8px;cursor:pointer}.result{margin-top:14px;background:#08131d;border-left:4px solid var(--green);padding:15px;border-radius:8px;font-weight:700}
+.lesson{border-bottom:1px solid var(--line);padding:13px 0}.lesson:last-child{border:0}.lesson b{display:block}.lesson span{font-size:12px;color:var(--muted)}.progressbar{height:7px;background:#1c2c39;border-radius:10px;margin-top:10px;overflow:hidden}.progressbar i{display:block;height:100%;background:var(--accent)}
+.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:11px;border-bottom:1px solid var(--line)}th{color:var(--accent)}td{color:#b8c7d2}
+.searchResults{position:absolute;top:47px;width:100%;background:#0c1823;border:1px solid var(--line);border-radius:10px;display:none;max-height:320px;overflow:auto}.searchResults div{padding:11px;border-bottom:1px solid var(--line);cursor:pointer}.searchResults div:hover{background:#142536}.searchResults small{display:block;color:var(--muted);margin-top:3px}
+@media(max-width:1050px){.stats,.grid4{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){.side{transform:translateX(-100%);transition:.2s}.side.open{transform:translateX(0)}.main{margin:0;width:100%}.hamb{display:block}.content{padding:18px}.grid,.grid4,.stats,.cols,.row{grid-template-columns:1fr}.hero h1{font-size:29px}.online{display:none}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="side" id="side">
+ <div class="brand"><b>EM <span>TECH</span></b><small>Centro de Diagnóstico y Formación Electromecánica</small></div>
+ <nav class="nav">
+  <div class="navlabel">CENTRO TÉCNICO</div>
+  <button class="on" data-page="inicio">▦ &nbsp; Dashboard</button>
+  <button data-page="diagnostico">⚡ &nbsp; Diagnóstico guiado</button>
+  <button data-page="equipos">⚙ &nbsp; Equipos y sistemas</button>
+  <button data-page="mantenimiento">🔧 &nbsp; Mantenimiento</button>
+  <div class="navlabel">FORMACIÓN</div>
+  <button data-page="academia">🎓 &nbsp; Academia EM TECH</button>
+  <button data-page="biblioteca">📚 &nbsp; Biblioteca técnica</button>
+  <button data-page="casos">🧪 &nbsp; Casos prácticos</button>
+  <div class="navlabel">TALLER</div>
+  <button data-page="herramientas">🧰 &nbsp; Calculadoras</button>
+  <button data-page="seguridad">🦺 &nbsp; Seguridad / LOTO</button>
+ </nav>
+</aside>
+<main class="main">
+<header class="top"><button class="hamb" onclick="side.classList.toggle('open')">☰</button>
+ <div class="search"><input id="globalSearch" placeholder="🔎 Buscar: motor trifásico, sensor, chiller, P.09, Maguire..."><div class="searchResults" id="searchResults"></div></div>
+ <div class="online"><span class="dot"></span>EM TECH activo</div>
+</header>
+<div class="content">
+
+<section class="page on" id="inicio">
+ <div class="hero"><div class="eyebrow">ELECTROMECÁNICA • MANTENIMIENTO • AUTOMATIZACIÓN</div><h1>Aprende a entender, medir y diagnosticar.</h1>
+ <p>Una plataforma práctica para electricidad industrial, mecánica, motores, PLC, variadores, sensores, hidráulica, neumática, aire comprimido, refrigeración industrial, instrumentación y mantenimiento.</p>
+ <div class="heroactions"><button class="btn" onclick="go('diagnostico')">⚡ Tengo una falla</button><button class="btn secondary" onclick="go('academia')">🎓 Quiero aprender</button><button class="btn secondary" onclick="go('mantenimiento')">🔧 Registrar trabajo</button></div></div>
+ <div class="stats"><div class="stat"><strong>12</strong><span>familias de equipos</span></div><div class="stat"><strong>9</strong><span>rutas de formación</span></div><div class="stat"><strong id="recordCount">0</strong><span>intervenciones guardadas</span></div><div class="stat"><strong>10+</strong><span>calculadoras y conversiones</span></div></div>
+ <div class="title"><h2>Áreas principales</h2><p>Del fundamento eléctrico al diagnóstico de una máquina real.</p></div>
+ <div class="grid">
+  <div class="card" onclick="openEquipment('electricidad')"><div class="ico">⚡</div><h3>Electricidad industrial</h3><p>AC/DC, trifásico, protecciones, contactores, medición, diagramas y control.</p><span class="tag">Fundamentos + diagnóstico</span></div>
+  <div class="card" onclick="openEquipment('automatizacion')"><div class="ico">🧠</div><h3>Automatización</h3><p>PLC, HMI, sensores, 24 VDC, entradas/salidas, drives y lógica de control.</p><span class="tag">PLC • HMI • VFD</span></div>
+  <div class="card" onclick="openEquipment('fluidos')"><div class="ico">💧</div><h3>Hidráulica y neumática</h3><p>Presión, caudal, bombas, cilindros, válvulas, electroválvulas y lectura de planos.</p><span class="tag">Potencia fluida</span></div>
+  <div class="card" onclick="openEquipment('auxiliares')"><div class="ico">🏭</div><h3>Equipos auxiliares</h3><p>Compresores, secadores, chillers, purgas, presión, temperatura y rutinas.</p><span class="tag">Mantenimiento industrial</span></div>
+  <div class="card" onclick="go('casos')"><div class="ico">🧪</div><h3>Casos prácticos</h3><p>Fallas y situaciones reales convertidas en ejercicios de diagnóstico.</p><span class="tag">Aprender haciendo</span></div>
+  <div class="card" onclick="go('herramientas')"><div class="ico">🧰</div><h3>Herramientas técnicas</h3><p>Ley de Ohm, potencia trifásica, RPM, HP/kW, presión, temperatura y 4–20 mA.</p><span class="tag">Cálculo rápido</span></div>
+ </div>
+</section>
+
+<section class="page" id="diagnostico">
+ <div class="title"><h2>⚡ Diagnóstico guiado</h2><p>No cambia piezas por adivinanza: inspecciona, mide, compara y concluye.</p></div>
+ <div class="warning">Antes de intervenir: identifica las energías presentes. Desenergiza y aplica LOTO cuando corresponda. Una medición energizada solo debe realizarse con procedimiento, instrumento, categoría y EPP adecuados.</div>
+ <div class="box wizard">
+  <div class="row"><div><label>Familia del equipo</label><select id="diagType"><option value="motor">Motor trifásico</option><option value="contactor">Contactor / control</option><option value="sensor">Sensor industrial</option><option value="vfd">Variador / drive</option><option value="compressor">Compresor</option><option value="chiller">Chiller</option><option value="heater">Resistencia / secadora</option><option value="hydraulic">Hidráulica</option><option value="leak">Detector de fugas</option></select></div><div><label>Síntoma</label><select id="diagSymptom"></select></div></div>
+  <label>Notas o alarma observada</label><textarea id="diagNotes" placeholder="Ej.: no arranca, LED del sensor sí cambia pero PLC no detecta, baja presión, código de alarma..."></textarea>
+  <button class="btn" onclick="buildDiagnosis()">Crear ruta de diagnóstico</button>
+  <div id="diagOutput"></div>
+ </div>
+</section>
+
+<section class="page" id="equipos">
+ <div class="title"><h2>⚙ Equipos y sistemas</h2><p>Fichas para entender funcionamiento, componentes, mediciones, fallas y mantenimiento.</p></div>
+ <div class="grid4" id="equipmentGrid"></div><div class="detail box" id="equipmentDetail"></div>
+</section>
+
+<section class="page" id="mantenimiento">
+ <div class="title"><h2>🔧 Historial de mantenimiento</h2><p>Documenta la intervención completa para convertir experiencia en conocimiento reutilizable.</p></div>
+ <div class="box">
+  <div class="row"><div><label>Equipo / máquina</label><input id="mMachine" placeholder="Ej. Compresor, chiller, extrusor..."></div><div><label>Marca / modelo</label><input id="mModel" placeholder="Ej. Kaeser CSD100"></div></div>
+  <div class="row"><div><label>Tipo</label><select id="mType"><option>Inspección</option><option>Preventivo</option><option>Correctivo</option><option>Diagnóstico</option><option>Mejora</option></select></div><div><label>Estado final</label><select id="mStatus"><option>Operativo</option><option>En observación</option><option>Pendiente</option><option>Fuera de servicio</option></select></div></div>
+  <label>Síntoma / alarma</label><textarea id="mSymptom"></textarea>
+  <label>Mediciones realizadas</label><textarea id="mMeasures" placeholder="Voltajes, amperajes, presión, temperatura, continuidad, resistencia..."></textarea>
+  <label>Diagnóstico / causa encontrada</label><textarea id="mDiagnosis"></textarea>
+  <label>Trabajo realizado / solución</label><textarea id="mSolution"></textarea>
+  <div class="row"><div><label>Repuestos / materiales</label><input id="mParts"></div><div><label>Próxima revisión</label><input id="mNext" type="date"></div></div>
+  <button class="btn" onclick="saveRecord()">Guardar intervención</button>
+ </div>
+ <div class="title"><h2>Intervenciones</h2></div><div class="records" id="records"></div>
+</section>
+
+<section class="page" id="academia">
+ <div class="title"><h2>🎓 Academia EM TECH</h2><p>Rutas ordenadas desde fundamentos hasta diagnóstico práctico.</p></div>
+ <div class="grid" id="courseGrid"></div><div class="detail box" id="courseDetail"></div>
+</section>
+
+<section class="page" id="biblioteca">
+ <div class="title"><h2>📚 Biblioteca técnica</h2><p>Consulta rápida para el taller y el estudio.</p></div>
+ <div class="cols">
+  <div class="box"><h3>⚡ Fórmulas esenciales</h3><div class="tablewrap"><table><tr><th>Concepto</th><th>Fórmula</th></tr><tr><td>Ley de Ohm</td><td>V = I × R</td></tr><tr><td>Potencia DC / resistiva</td><td>P = V × I</td></tr><tr><td>Potencia monofásica AC</td><td>P = V × I × FP</td></tr><tr><td>Potencia trifásica</td><td>P = √3 × V<sub>L</sub> × I<sub>L</sub> × FP</td></tr><tr><td>RPM síncrona</td><td>Ns = 120f / polos</td></tr><tr><td>Deslizamiento</td><td>s = (Ns − Nr) / Ns × 100%</td></tr></table></div></div>
+  <div class="box"><h3>📏 Conversiones rápidas</h3><div class="tablewrap"><table><tr><th>Conversión</th><th>Aproximación</th></tr><tr><td>1 bar</td><td>14.504 psi</td></tr><tr><td>1 psi</td><td>6.895 kPa</td></tr><tr><td>1 HP</td><td>0.746 kW</td></tr><tr><td>1 kW</td><td>1.341 HP</td></tr><tr><td>°C → °F</td><td>(°C × 9/5) + 32</td></tr><tr><td>°F → °C</td><td>(°F − 32) × 5/9</td></tr></table></div></div>
+  <div class="box"><h3>🎚 Señales industriales</h3><p style="color:var(--muted)">Digitales: típicamente ON/OFF. Analógicas comunes: 0–10 V y 4–20 mA. El lazo 4–20 mA permite representar un rango de proceso y usar 4 mA como cero vivo.</p><p style="color:var(--muted)">Sensores de 3 hilos DC suelen encontrarse como PNP o NPN; siempre confirma diagrama y placa antes de cablear.</p></div>
+  <div class="box"><h3>🔩 Bornes de motor</h3><p style="color:var(--muted)">En motores IEC de seis terminales es común encontrar U1, V1, W1 y U2, V2, W2. La conexión estrella/triángulo depende de la placa del motor y de la tensión de red; no se decide solo por ver seis bornes.</p></div>
+ </div>
+</section>
+
+<section class="page" id="casos">
+ <div class="title"><h2>🧪 Casos prácticos de mantenimiento</h2><p>Situaciones industriales para practicar cómo pensar como técnico.</p></div>
+ <div class="grid" id="caseGrid"></div><div class="detail box" id="caseDetail"></div>
+</section>
+
+<section class="page" id="herramientas">
+ <div class="title"><h2>🧰 Calculadoras y conversiones</h2><p>Resultados orientativos; verifica siempre placa, normativa y condiciones reales.</p></div>
+ <div class="tooltabs" id="toolTabs"></div><div class="box" id="toolBox"></div>
+</section>
+
+<section class="page" id="seguridad">
+ <div class="title"><h2>🦺 Seguridad y LOTO</h2><p>El diagnóstico empieza por controlar la energía, no por abrir el tablero.</p></div>
+ <div class="grid">
+  <div class="card"><div class="ico">🔒</div><h3>LOTO</h3><p>Identificar fuentes, detener, aislar, bloquear/etiquetar, liberar energía almacenada y verificar estado seguro según el procedimiento de la empresa.</p></div>
+  <div class="card"><div class="ico">⚡</div><h3>Riesgo eléctrico</h3><p>Selecciona instrumento y puntas adecuados, revisa su estado y respeta la categoría de medición. No improvises mediciones energizadas.</p></div>
+  <div class="card"><div class="ico">💨</div><h3>Presión</h3><p>Aire e hidráulica almacenan energía. Despresuriza y confirma presión cero antes de desmontar mangueras, válvulas o actuadores.</p></div>
+  <div class="card"><div class="ico">🔥</div><h3>Temperatura</h3><p>Resistencias, tuberías, aceite, refrigerante y componentes pueden permanecer calientes después del paro.</p></div>
+  <div class="card"><div class="ico">⚙</div><h3>Movimiento</h3><p>Considera gravedad, resortes, cilindros, volantes, bandas y partes que pueden moverse aun con energía eléctrica retirada.</p></div>
+  <div class="card"><div class="ico">📝</div><h3>Antes de intervenir</h3><p>Lee manuales, diagramas, placa y alarmas; documenta el estado inicial. Si una prueba exige energizar, define el método seguro antes de ejecutarla.</p></div>
+ </div>
+</section>
+</div></main></div>
+
+<script>
+const equipment=[
+{id:'electricidad',icon:'⚡',name:'Electricidad industrial',sub:'AC/DC • monofásico • trifásico',what:'Base para comprender alimentación, control y potencia en máquinas.',parts:['Fases, neutro y tierra','Breakers, fusibles y protecciones','Contactores y relés','Fuentes 24 VDC','Circuitos de mando y potencia'],measure:['Tensión AC/DC','Continuidad con circuito desenergizado','Resistencia','Corriente con método adecuado','Secuencia/presencia de fases'],faults:['Fusible abierto','Fase perdida','Conexión floja','Bobina sin alimentación','Protección disparada']},
+{id:'motor',icon:'🌀',name:'Motores eléctricos',sub:'Trifásicos • conexiones • diagnóstico',what:'Convierten energía eléctrica en movimiento. El diagnóstico combina alimentación, bobinados, carga mecánica y condición del motor.',parts:['Estator y bobinados','Rotor','Rodamientos','Ventilador','Caja de bornes'],measure:['L1-L2, L2-L3, L1-L3','Corriente por fase','Resistencia comparativa de devanados','Aislamiento con instrumento apropiado','Temperatura y vibración'],faults:['No arranca','Zumba','Sobrecalienta','Dispara protección','Vibra o hace ruido']},
+{id:'automatizacion',icon:'🧠',name:'PLC / HMI',sub:'Entradas • salidas • lógica',what:'El PLC recibe señales, ejecuta lógica y ordena salidas; el HMI permite visualizar y operar el proceso.',parts:['CPU','Fuente','Entradas digitales/analógicas','Salidas','HMI y comunicaciones'],measure:['24 VDC de alimentación','Estado físico/LED de I/O','Señal en borne de entrada','Señal de salida','Continuidad/cableado con energía controlada'],faults:['Entrada no detectada','Salida no activa','Falla de comunicación','Fuente 24 V baja','Interlock activo']},
+{id:'vfd',icon:'🎛',name:'Variadores / drives',sub:'VFD • velocidad • alarmas',what:'Modulan frecuencia y tensión para controlar motores AC. Sus alarmas son pistas, no diagnósticos completos.',parts:['Rectificador','Bus DC','Etapa inversora','Control','Entradas/salidas'],measure:['Alimentación de entrada','Estado/código de falla','Corriente reportada','Señales de enable/run','Parámetros contra placa'],faults:['Sobrecorriente','Sobretensión','Subtensión','Sobretemperatura','Drive en estado de error']},
+{id:'sensor',icon:'📡',name:'Sensores',sub:'Inductivo • capacitivo • fotoeléctrico',what:'Transforman una condición física en una señal para el sistema de control.',parts:['Alimentación','Elemento sensor','Salida PNP/NPN u otra','Cableado/conector','Entrada PLC'],measure:['Tensión de alimentación','Cambio de LED','Cambio de tensión/señal de salida','Señal en entrada PLC','Alineación/distancia'],faults:['LED cambia pero PLC no','Desalineación','Cable roto','Tipo PNP/NPN incorrecto','Alimentación ausente']},
+{id:'pneumatic',icon:'💨',name:'Neumática',sub:'Aire • válvulas • cilindros',what:'Usa aire comprimido para transmitir energía y accionar mecanismos.',parts:['FRL','Reguladores','Electroválvulas','Cilindros','Mangueras y racores'],measure:['Presión','Señal a solenoide','Fugas','Movimiento/tiempo de ciclo','Estado de sensores de cilindro'],faults:['Fuga','Cilindro lento','Válvula no conmuta','Presión insuficiente','Pistón actúa sin orden']},
+{id:'hydraulic',icon:'💧',name:'Hidráulica',sub:'Bombas • válvulas • presión',what:'Transmite potencia mediante fluido presurizado.',parts:['Depósito','Bomba','Filtro','Válvula de alivio','Válvulas direccionales','Cilindros/hidromotores'],measure:['Nivel/condición de aceite','Presión en punto de prueba','Temperatura','Fugas','Ruido/cavitación'],faults:['Baja presión','Fuga','Aceite caliente','Movimiento lento','Filtro restringido']},
+{id:'compressor',icon:'🏭',name:'Compresores',sub:'Aire comprimido industrial',what:'Generan aire comprimido para la planta. Una rutina observa presión, temperatura, aceite, drenajes y alarmas.',parts:['Elemento compresor','Motor','Separación de aceite','Enfriador','Válvula de admisión','Control'],measure:['Presión de descarga','Temperatura','Nivel de aceite','Diferencial/restricción según equipo','Horas y alarmas'],faults:['Baja presión','Temperatura alta','Arranques frecuentes','Aceite bajo','Fuga de aire']},
+{id:'dryer',icon:'🌬',name:'Secadores de aire',sub:'Tratamiento de aire comprimido',what:'Reducen humedad del aire comprimido para proteger proceso y equipos.',parts:['Circuito frigorífico o desecante','Drenaje','Ventilación','Intercambiador','Control'],measure:['Indicadores/temperatura','Drenaje de condensado','Ventilador','Alarmas','Condición de entrada/salida'],faults:['Alarma','Ventilador detenido','Agua en línea','Drenaje bloqueado','Alta temperatura']},
+{id:'chiller',icon:'❄',name:'Chillers',sub:'Agua de proceso • refrigeración',what:'Extraen calor del agua de proceso mediante un circuito de refrigeración.',parts:['Compresor','Condensador','Evaporador','Dispositivo de expansión','Bomba/circuito de agua','Control'],measure:['Temperatura entrada/salida','Flujo de agua','Alarmas','Presiones solo con procedimiento y equipo adecuado','Condición de condensador'],faults:['Alarma recurrente','Alta temperatura','Bajo flujo','Condensador sucio','Protección de refrigeración']},
+{id:'heater',icon:'🔥',name:'Resistencias y temperatura',sub:'Calentadores • termostatos • control',what:'Sistemas de calentamiento usan resistencias y dispositivos de control/protección térmica.',parts:['Resistencia','Termostato/controlador','Protección térmica','Contactor/SSR','Sensor de temperatura'],measure:['Alimentación','Continuidad/resistencia desenergizado','Orden de control','Estado de protección térmica','Corriente del calentador'],faults:['No calienta','Protección abierta','Contactor no activa','Resistencia abierta','Control sin orden']},
+{id:'mechanical',icon:'🔩',name:'Mecánica industrial',sub:'Rodamientos • transmisión • lubricación',what:'La parte mecánica determina carga, alineación, movimiento y desgaste.',parts:['Rodamientos','Acoples','Cadenas/bandas','Reductores','Ejes y sellos'],measure:['Temperatura','Vibración','Holgura','Alineación','Condición/nivel de lubricante'],faults:['Ruido','Vibración','Sobrecalentamiento','Desgaste','Fuga de lubricante']},
+{id:'instrument',icon:'📈',name:'Instrumentación',sub:'Presión • temperatura • 4–20 mA',what:'Mide variables del proceso y las convierte en señales interpretables por control.',parts:['Sensor','Transmisor','Cableado','Entrada analógica','Escalamiento'],measure:['Variable física','4–20 mA','0–10 V','Alimentación del transmisor','Valor escalado en PLC/HMI'],faults:['Lectura fija','Escala incorrecta','Lazo abierto','Ruido de señal','Sensor fuera de rango']}
+];
+const cases=[
+{name:'Sensor cambia LED, PLC no detecta',icon:'📡',system:'Detector de fugas',lesson:'Separar “el sensor detecta” de “la señal llega al control”.',steps:['Confirmar alimentación del sensor y tipo de salida.','Observar LED al pasar el envase.','Medir la salida del sensor respecto a referencia correcta.','Seguir la señal hasta el borne/entrada del PLC.','Verificar LED/estado lógico de la entrada.','Si llega al PLC, revisar lógica, interlocks y modo de máquina.']},
+{name:'Pistón baja sin usar el sensor',icon:'💨',system:'Neumática / automatización',lesson:'Distinguir orden eléctrica, válvula neumática y problema mecánico.',steps:['Asegurar la máquina antes de acercarse al actuador.','Verificar si la salida PLC está ordenando la electroválvula.','Comprobar tensión en bobina cuando ocurre el movimiento.','Si no hay orden eléctrica, revisar válvula pegada, accionamiento manual y circuito neumático.','Revisar lógica solo después de confirmar la capa física.']},
+{name:'Compresor pierde presión',icon:'🏭',system:'Aire comprimido',lesson:'La baja presión puede venir de demanda, fuga, control o capacidad.',steps:['Comparar presión real con consigna.','Revisar fugas/demanda extraordinaria de planta.','Confirmar que el compresor carga correctamente.','Revisar admisión, filtros y alarmas según manual.','Comparar comportamiento con otro compresor disponible.','Registrar presión antes/después de la intervención.']},
+{name:'Chiller con alarma recurrente',icon:'❄',system:'Refrigeración industrial',lesson:'Un reset recupera operación; no necesariamente elimina la causa.',steps:['Registrar código exacto antes del reset.','Consultar significado específico del fabricante/modelo.','Revisar flujo y temperaturas de agua.','Inspeccionar condensador/ventilación y condiciones externas.','Observar si la alarma reaparece y bajo qué condición.','Escalar a diagnóstico frigorífico cuando corresponda.']},
+{name:'Secadora no calienta',icon:'🔥',system:'Calefacción industrial',lesson:'Seguir la cadena: alimentación → control → protección → resistencia.',steps:['Aplicar aislamiento seguro antes de pruebas de continuidad.','Confirmar tensión de alimentación y orden de calentamiento.','Revisar contactor/SSR.','Comprobar termostatos y protecciones térmicas según diagrama.','Medir resistencia/continuidad del elemento calefactor desenergizado.','No puentear protecciones como solución permanente.']},
+{name:'Drive en estado de error',icon:'🎛',system:'Variador / PLCopen',lesson:'Diferenciar el error del drive del bloque de software que lo reporta.',steps:['Registrar código exacto y estado del drive.','Verificar alimentación y condiciones del motor/carga.','Consultar historial y manual del drive.','Confirmar enable, STO/interlocks y orden de marcha.','Corregir causa antes de resetear repetidamente.','Verificar que el bloque de control vuelva a estado operativo.']},
+{name:'Filtro de aceite / restricción',icon:'🛢',system:'Hidráulica',lesson:'Una alarma de filtro debe relacionarse con presión diferencial, aceite y condición del sistema.',steps:['Confirmar alarma y ubicación del filtro en plano/manual.','Inspeccionar nivel y condición del aceite.','Revisar indicador de restricción si existe.','No abrir el circuito hasta eliminar presión almacenada.','Cambiar elemento según procedimiento si se confirma restricción.','Revisar contaminación como posible causa raíz.']},
+{name:'Maguire: prueba de color',icon:'⚖',system:'Cargador gravimétrico',lesson:'Diferenciar porcentajes referidos al natural de porcentajes de la mezcla total.',steps:['Identificar componentes configurados: natural, color, aditivo/reproceso.','Confirmar en el manual cómo interpreta porcentajes el controlador.','Pesar descarga real antes de asumir dosificación ideal.','Calcular cantidades sobre la base que exige la receta.','Verificar el resultado por peso y calidad de mezcla.']},
+{name:'Visor sin lubricación aparente',icon:'⚙',system:'Extrusor / caja mecánica',lesson:'Un visor es una observación; el diagnóstico exige confirmar nivel, circulación y condición.',steps:['Confirmar qué circuito observa el visor.','Revisar nivel de lubricante con el equipo en condición indicada por fabricante.','Buscar fugas y cambios de temperatura/ruido.','Verificar bomba/circulación si el sistema la utiliza.','Evitar operar si el fabricante exige flujo visible y este no existe.']}
+];
+const courses=[
+['⚡','Electricidad industrial',['Seguridad y magnitudes eléctricas','AC y DC','Monofásico y trifásico','Ley de Ohm y potencia','Protecciones','Contactores y relés','Circuitos de mando','Mediciones con multímetro','Lectura de diagramas','Diagnóstico práctico']],
+['🌀','Motores trifásicos',['Principio de inducción','Partes del motor','Lectura de placa','Bornes IEC','Estrella y triángulo','Contactor y relé térmico','Medición de tensión/corriente','Bobinados y aislamiento','Rodamientos y vibración','Árbol de fallas']],
+['🧠','PLC y automatización',['Arquitectura PLC','24 VDC','Entradas digitales','Salidas digitales','PNP y NPN','Analógicas','HMI','Ladder básico','Interlocks','Diagnóstico de I/O']],
+['🎛','Variadores de frecuencia',['Bloques internos','Placa del motor','Parámetros básicos','Rampas','Entradas de control','Frecuencia y velocidad','Alarmas','Sobrecorriente','Bus DC','Diagnóstico']],
+['💨','Neumática',['Generación de aire','FRL','Presión y caudal','Válvulas','Electroválvulas','Cilindros','Sensores','Diagramas','Fugas','Diagnóstico']],
+['💧','Hidráulica',['Principios','Bombas','Depósito y filtros','Válvula de alivio','Direccionales','Cilindros','Hidromotores','Planos','Contaminación','Diagnóstico']],
+['❄','Refrigeración industrial',['Ciclo frigorífico','Compresor','Condensador','Expansión','Evaporador','Chillers','Flujo de agua','Alarmas','Mantenimiento','Diagnóstico']],
+['🔩','Mecánica industrial',['Rodamientos','Lubricación','Bandas y cadenas','Acoples','Reductores','Alineación','Torque','Vibración','Temperatura','Inspección']],
+['📈','Instrumentación',['Presión','Temperatura','Nivel','Caudal','4–20 mA','0–10 V','PT100/RTD','Transmisores','Escalamiento','Diagnóstico']]
+];
+const symptoms={
+motor:['No arranca','Dispara protección','Se calienta','Vibra / ruido','Gira al revés'],
+contactor:['No activa','Activa y cae','Contactos quemados'],
+sensor:['LED cambia pero PLC no detecta','No cambia LED','Detecta intermitente'],
+vfd:['Drive en error','Sobrecorriente','No mueve motor'],
+compressor:['Baja presión','Alta temperatura','No carga'],
+chiller:['Alarma','No enfría','Bajo flujo'],
+heater:['No calienta','Calienta poco','Dispara protección'],
+hydraulic:['Baja presión','Movimiento lento','Fuga'],
+leak:['Pistón baja solo','Sensor detecta pero HMI no','No completa ciclo']
+};
+const routes={
+motor:['Verifica condición segura e inspección visual.','Confirma alimentación trifásica y compara L1-L2, L2-L3 y L1-L3.','Revisa breaker/fusibles, guardamotor y relé térmico.','Comprueba si el contactor recibe orden y cierra correctamente.','Con el equipo aislado, compara resistencia de devanados y revisa conexiones según placa.','Separa problema eléctrico de carga mecánica: eje, rodamientos, acople o mecanismo.'],
+sensor:['Confirma tensión de alimentación y referencia común.','Identifica tipo de sensor y salida (por ejemplo PNP/NPN) mediante placa/diagrama.','Comprueba si el LED cambia con el objetivo.','Mide la señal de salida y síguela hasta el borne de entrada PLC.','Compara el estado físico de la entrada con el estado mostrado en PLC/HMI.','Si la señal llega, revisa lógica, interlocks y secuencia.'],
+vfd:['Anota el código exacto antes de resetear.','Revisa alimentación, motor, carga y condiciones ambientales.','Consulta el significado del código para la marca/modelo.','Comprueba enable, STO/interlocks y referencia de marcha.','Compara parámetros del motor con su placa.','Corrige la causa y solo después prueba reset/arranque controlado.'],
+compressor:['Registra presión y consigna.','Revisa demanda/fugas en la red.','Confirma si el equipo entra en carga y descarga correctamente.','Inspecciona filtros, admisión, aceite, temperatura y alarmas según fabricante.','Compara presión antes/después y documenta tendencia.'],
+chiller:['Registra código exacto y estado antes de reset.','Confirma flujo de agua y temperaturas de entrada/salida.','Inspecciona condensador, ventilación y bombas.','Consulta manual para el código específico.','Observa recurrencia y condición de carga; no asumas que reset = reparación.'],
+heater:['Confirma orden de calentamiento y alimentación.','Revisa contactor/SSR y control de temperatura.','Con aislamiento seguro, verifica termostatos/protecciones y continuidad del calentador.','Compara resistencia esperada con potencia/tensión cuando los datos estén disponibles.','No elimines protecciones térmicas para mantener producción.'],
+hydraulic:['Revisa nivel, temperatura, fugas y condición del aceite.','Confirma presión en un punto de prueba diseñado para ello.','Compara con consigna y revisa válvula de alivio/control.','Evalúa filtro/restricción, bomba y actuador.','Despresuriza antes de desmontar componentes.'],
+leak:['Asegura movimiento neumático antes de intervenir.','Separa sensor → entrada PLC → lógica → salida PLC → electroválvula → cilindro.','Observa LED de sensor y entrada PLC.','Verifica estado de salida y tensión en bobina.','Si el cilindro se mueve sin orden, revisa válvula, accionamiento manual y neumática.'],
+contactor:['Confirma tensión nominal de bobina y señal de mando.','Revisa interlocks, paro de emergencia y protección térmica.','Mide tensión en A1-A2 solo bajo procedimiento seguro.','Con equipo aislado, inspecciona bobina/contactos y continuidad donde aplique.','Busca caída de tensión, terminales flojos o contacto auxiliar defectuoso.']
+};
+
+function go(id){document.querySelectorAll('.page').forEach(x=>x.classList.remove('on'));document.getElementById(id).classList.add('on');document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('on',x.dataset.page===id));side.classList.remove('open');scrollTo(0,0)}
+document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>go(b.dataset.page));
+
+function renderEquipment(){equipmentGrid.innerHTML=equipment.map(e=>`<div class="card" onclick="showEquipment('${e.id}')"><div class="ico">${e.icon}</div><h3>${e.name}</h3><p>${e.sub}</p><span class="tag">Abrir ficha</span></div>`).join('')}
+function showEquipment(id){const e=equipment.find(x=>x.id===id);equipmentDetail.classList.add('on');equipmentDetail.innerHTML=`<h3>${e.icon} ${e.name}</h3><p style="color:var(--muted)">${e.what}</p><div class="cols"><div class="info"><h4>Componentes / conceptos</h4><ul>${e.parts.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="info"><h4>Qué revisar o medir</h4><ul>${e.measure.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="info"><h4>Fallas frecuentes</h4><ul>${e.faults.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="info"><h4>Método EM TECH</h4><ol><li>Entender el síntoma.</li><li>Revisar seguridad y energías.</li><li>Inspeccionar.</li><li>Medir.</li><li>Comparar con placa/manual.</li><li>Aislar la causa.</li><li>Corregir y verificar.</li><li>Documentar.</li></ol></div></div>`;equipmentDetail.scrollIntoView({behavior:'smooth'})}
+function openEquipment(id){go('equipos');setTimeout(()=>showEquipment(id),50)}
+
+function updateSymptoms(){diagSymptom.innerHTML=symptoms[diagType.value].map(x=>`<option>${x}</option>`).join('')}
+diagType.onchange=updateSymptoms; updateSymptoms();
+function buildDiagnosis(){let key=diagType.value, arr=routes[key]||routes.motor;diagOutput.innerHTML=`<div class="step"><b>Ruta sugerida: ${diagSymptom.value}</b><ol>${arr.map(x=>`<li>${x}</li>`).join('')}</ol><p style="color:var(--muted);font-size:12px">Notas registradas: ${escapeHtml(diagNotes.value||'Sin notas adicionales.')}</p></div>`}
+
+function renderCourses(){courseGrid.innerHTML=courses.map((c,i)=>`<div class="card" onclick="showCourse(${i})"><div class="ico">${c[0]}</div><h3>${c[1]}</h3><p>${c[2].length} lecciones prácticas</p><div class="progressbar"><i style="width:${getProgress(i)}%"></i></div><span class="tag">${getProgress(i)}% completado</span></div>`).join('')}
+function getProgress(i){let done=JSON.parse(localStorage.getItem('emtechLessons')||'{}')[i]||[];return Math.round(done.length/courses[i][2].length*100)}
+function showCourse(i){let done=JSON.parse(localStorage.getItem('emtechLessons')||'{}')[i]||[];courseDetail.classList.add('on');courseDetail.innerHTML=`<h3>${courses[i][0]} ${courses[i][1]}</h3>${courses[i][2].map((l,j)=>`<div class="lesson"><b>${String(j+1).padStart(2,'0')} — ${l}</b><span>${done.includes(j)?'✓ Completada':'Pendiente'}</span> <button class="btn secondary" style="float:right;padding:5px 8px" onclick="toggleLesson(${i},${j})">${done.includes(j)?'Desmarcar':'Completar'}</button></div>`).join('')}`}
+function toggleLesson(i,j){let all=JSON.parse(localStorage.getItem('emtechLessons')||'{}'),a=all[i]||[];a=a.includes(j)?a.filter(x=>x!==j):[...a,j];all[i]=a;localStorage.setItem('emtechLessons',JSON.stringify(all));renderCourses();showCourse(i)}
+
+function renderCases(){caseGrid.innerHTML=cases.map((c,i)=>`<div class="card" onclick="showCase(${i})"><div class="ico">${c.icon}</div><h3>${c.name}</h3><p>${c.system}</p><span class="tag">Caso práctico</span></div>`).join('')}
+function showCase(i){let c=cases[i];caseDetail.classList.add('on');caseDetail.innerHTML=`<h3>${c.icon} ${c.name}</h3><p><b>Objetivo:</b> ${c.lesson}</p><div class="info"><h4>Ruta de análisis</h4><ol>${c.steps.map(x=>`<li>${x}</li>`).join('')}</ol></div><div class="warning" style="margin-top:12px">La ruta es educativa y debe adaptarse al manual, diagrama, tensión, presión y procedimiento de seguridad del equipo específico.</div>`;caseDetail.scrollIntoView({behavior:'smooth'})}
+
+function escapeHtml(s){return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function saveRecord(){if(!mMachine.value.trim()){alert('Indica el equipo o máquina.');return}let a=JSON.parse(localStorage.getItem('emtechRecords')||'[]');a.unshift({date:new Date().toLocaleString(),machine:mMachine.value,model:mModel.value,type:mType.value,status:mStatus.value,symptom:mSymptom.value,measures:mMeasures.value,diagnosis:mDiagnosis.value,solution:mSolution.value,parts:mParts.value,next:mNext.value});localStorage.setItem('emtechRecords',JSON.stringify(a));['mMachine','mModel','mSymptom','mMeasures','mDiagnosis','mSolution','mParts','mNext'].forEach(x=>document.getElementById(x).value='');renderRecords()}
+function renderRecords(){let a=JSON.parse(localStorage.getItem('emtechRecords')||'[]');recordCount.textContent=a.length;records.innerHTML=a.length?a.map((r,i)=>`<div class="record"><small>${escapeHtml(r.date)} • ${escapeHtml(r.type)} • ${escapeHtml(r.status)}</small><h3>${escapeHtml(r.machine)} ${r.model?'— '+escapeHtml(r.model):''}</h3><p><b>Síntoma:</b> ${escapeHtml(r.symptom||'—')}<br><b>Mediciones:</b> ${escapeHtml(r.measures||'—')}<br><b>Diagnóstico:</b> ${escapeHtml(r.diagnosis||'—')}<br><b>Solución:</b> ${escapeHtml(r.solution||'—')}<br><b>Repuestos:</b> ${escapeHtml(r.parts||'—')} ${r.next?'<br><b>Próxima revisión:</b> '+escapeHtml(r.next):''}</p><button class="btn danger" onclick="deleteRecord(${i})">Eliminar</button></div>`).join(''):'<div class="box"><p style="color:var(--muted)">Todavía no hay intervenciones guardadas.</p></div>'}
+function deleteRecord(i){let a=JSON.parse(localStorage.getItem('emtechRecords')||'[]');if(confirm('¿Eliminar esta intervención?')){a.splice(i,1);localStorage.setItem('emtechRecords',JSON.stringify(a));renderRecords()}}
+
+const tools=[
+{name:'Ley de Ohm',fields:[['V','Voltaje (V)'],['R','Resistencia (Ω)']],calc:v=>`${(v.V/v.R).toFixed(3)} A`,valid:v=>v.R>0},
+{name:'Potencia trifásica',fields:[['V','Voltaje línea-línea (V)'],['I','Corriente de línea (A)'],['FP','Factor de potencia (0–1)']],calc:v=>`${(Math.sqrt(3)*v.V*v.I*v.FP/1000).toFixed(3)} kW`,valid:v=>v.V>=0&&v.I>=0&&v.FP>=0&&v.FP<=1},
+{name:'kW → HP',fields:[['KW','Potencia (kW)']],calc:v=>`${(v.KW*1.34102).toFixed(2)} HP`,valid:v=>v.KW>=0},
+{name:'HP → kW',fields:[['HP','Potencia (HP)']],calc:v=>`${(v.HP*0.7457).toFixed(2)} kW`,valid:v=>v.HP>=0},
+{name:'RPM síncrona',fields:[['F','Frecuencia (Hz)'],['P','Número de polos']],calc:v=>`${(120*v.F/v.P).toFixed(0)} rpm`,valid:v=>v.F>0&&v.P>0},
+{name:'psi → bar',fields:[['PSI','Presión (psi)']],calc:v=>`${(v.PSI/14.5038).toFixed(3)} bar`,valid:v=>v.PSI>=0},
+{name:'bar → psi',fields:[['BAR','Presión (bar)']],calc:v=>`${(v.BAR*14.5038).toFixed(2)} psi`,valid:v=>v.BAR>=0},
+{name:'°F → °C',fields:[['F','Temperatura (°F)']],calc:v=>`${((v.F-32)*5/9).toFixed(2)} °C`,valid:v=>true},
+{name:'°C → °F',fields:[['C','Temperatura (°C)']],calc:v=>`${(v.C*9/5+32).toFixed(2)} °F`,valid:v=>true},
+{name:'4–20 mA → %',fields:[['MA','Corriente (mA)']],calc:v=>`${((v.MA-4)/16*100).toFixed(1)} % del rango`,valid:v=>v.MA>=4&&v.MA<=20}
+];
+function renderToolTabs(){toolTabs.innerHTML=tools.map((t,i)=>`<button onclick="showTool(${i})">${t.name}</button>`).join('');showTool(0)}
+function showTool(i){let t=tools[i];toolBox.innerHTML=`<h3>${t.name}</h3>${t.fields.map(f=>`<label>${f[1]}</label><input type="number" step="any" id="tool_${f[0]}">`).join('')}<button class="btn" onclick="calcTool(${i})">Calcular</button><div class="result" id="toolResult">Ingresa los valores.</div>`}
+function calcTool(i){let t=tools[i],v={};for(let f of t.fields){v[f[0]]=parseFloat(document.getElementById('tool_'+f[0]).value);if(Number.isNaN(v[f[0]])){toolResult.textContent='Completa todos los valores.';return}}toolResult.textContent=t.valid(v)?t.calc(v):'Valores fuera de rango o inválidos.'}
+
+const searchData=[
+...equipment.map(e=>({title:e.name,desc:e.sub,action:()=>openEquipment(e.id)})),
+...cases.map((c,i)=>({title:c.name,desc:c.system,action:()=>{go('casos');setTimeout(()=>showCase(i),50)}})),
+...courses.map((c,i)=>({title:c[1],desc:'Curso • '+c[2].length+' lecciones',action:()=>{go('academia');setTimeout(()=>showCourse(i),50)}}))
+];
+globalSearch.oninput=()=>{let q=globalSearch.value.trim().toLowerCase();if(!q){searchResults.style.display='none';return}let found=searchData.filter(x=>(x.title+' '+x.desc).toLowerCase().includes(q)).slice(0,8);searchResults.innerHTML=found.map((x,i)=>`<div data-i="${i}"><b>${x.title}</b><small>${x.desc}</small></div>`).join('')||'<div>Sin resultados.</div>';searchResults.style.display='block';[...searchResults.querySelectorAll('[data-i]')].forEach((el,i)=>el.onclick=()=>{found[i].action();searchResults.style.display='none';globalSearch.value=''})};
+document.addEventListener('click',e=>{if(!e.target.closest('.search'))searchResults.style.display='none'});
+
+renderEquipment();renderCourses();renderCases();renderRecords();renderToolTabs();
+</script>
+</body>
+</html>
